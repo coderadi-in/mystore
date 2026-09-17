@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Browse all products in the Simple Store.">
+	<title>Simple Store | Products</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<header class="site-header">
+		<div class="container header-content">
+			<a class="logo" href="index.html">Simple Store</a>
+			<nav aria-label="Main navigation">
+				<a href="index.html">Home</a>
+				<a class="active" href="products.html">Products</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="page-heading">
+			<div class="container">
+				<p class="eyebrow">Collection</p>
+				<h1>All products</h1>
+				<p>Choose a product to open the order form.</p>
+			</div>
+		</section>
+
+		<section class="container section">
+			<div class="product-grid" data-product-list="all"></div>
+		</section>
+
+		<section class="container order-section" id="order-form-section" hidden>
+			<div class="order-panel">
+				<div class="section-heading">
+					<div>
+						<p class="eyebrow">Order request</p>
+						<h2>Send your details</h2>
+					</div>
+					<button class="text-button" type="button" data-close-form>Close</button>
+				</div>
+				<p class="form-note">Your request will be sent to the store for processing.</p>
+				<form id="order-form">
+					<div class="form-grid">
+						<label>
+							Product ID
+							<input id="product-id" name="source_id" type="text" readonly required>
+						</label>
+						<label>
+							Product title
+							<input id="product-title" name="product_title" type="text" readonly required>
+						</label>
+					</div>
+					<label>
+						Your address
+						<textarea name="address" rows="3" required></textarea>
+					</label>
+					<div class="form-grid">
+						<label>
+							Your name
+							<input name="customer_name" type="text" autocomplete="name" required>
+						</label>
+						<label>
+							Phone / WhatsApp
+							<input name="phone" type="tel" autocomplete="tel" required>
+						</label>
+					</div>
+					<button class="button" type="submit">Submit order</button>
+					<p class="form-status" role="status" aria-live="polite"></p>
+				</form>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<p>Simple Store &middot; A test storefront</p>
+		</div>
+	</footer>
+</body>
+
+</html>
