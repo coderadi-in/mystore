@@ -48,12 +48,12 @@ function createProductCard(product) {
 	card.setAttribute("aria-label", `Order ${product.title}`);
 	card.innerHTML = `
     <div class="product-image" aria-hidden="true">${product.title.charAt(0)}</div>
-    <div class="product-card-content">
-      <p class="product-id">ID: ${product.id}</p>
-      <h3>${product.title}</h3>
-      <p class="product-description">${product.description}</p>
+    <div class="product_card">
+      <p class="product_id">ID: ${product.id}</p>
+      <h3 class="product_title">${product.title}</h3>
+      <p class="product_description">${product.description}</p>
       <div class="product-footer">
-        <strong>${product.price}</strong>
+        <strong class="product_price">${product.price}</strong>
         <span class="order-link">Order now</span>
       </div>
     </div>
