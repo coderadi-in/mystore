@@ -1,86 +1,306 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Browse all products in the Simple Store.">
-	<title>Simple Store | Products</title>
-	<link rel="stylesheet" href="styles.css">
-	<script src="script.js" defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SIMPLE-STORE · Products</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+			background: #f8f9fc;
+			line-height: 1.4;
+			color: #1e1e2f;
+			padding: 1rem;
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1rem 0;
+			border-bottom: 2px solid #ddd;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.store-name {
+			font-size: 1.8rem;
+			font-weight: 700;
+			letter-spacing: 2px;
+			color: #0a2e4b;
+		}
+
+		.nav-links {
+			display: flex;
+			gap: 1.8rem;
+		}
+
+		.nav-links a {
+			text-decoration: none;
+			font-weight: 500;
+			color: #1e3b5c;
+			padding: 0.3rem 0;
+			border-bottom: 2px solid transparent;
+		}
+
+		.nav-links a:hover {
+			border-bottom-color: #1e3b5c;
+		}
+
+		h2 {
+			margin: 1.8rem 0 1rem;
+			font-size: 1.5rem;
+			color: #0a2e4b;
+		}
+
+		/* Product grid */
+		.product-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+			gap: 1rem;
+		}
+
+		.product-card {
+			background: white;
+			border: 1px solid #dde3ea;
+			border-radius: 8px;
+			padding: 1rem;
+			cursor: pointer;
+			transition: box-shadow 0.15s, transform 0.1s;
+		}
+
+		.product-card:hover {
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+			transform: translateY(-2px);
+		}
+
+		.product-id {
+			font-size: 0.75rem;
+			color: #7a8a9a;
+			letter-spacing: 0.5px;
+		}
+
+		.product-title {
+			font-size: 1.1rem;
+			font-weight: 600;
+			margin: 0.25rem 0 0.4rem;
+		}
+
+		.product-desc {
+			font-size: 0.9rem;
+			color: #4a5a6a;
+			margin-bottom: 0.6rem;
+		}
+
+		.product-price {
+			font-weight: 700;
+			color: #1e3b5c;
+		}
+
+		/* Modal */
+		.modal-overlay {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.45);
+			justify-content: center;
+			align-items: center;
+			padding: 1rem;
+			z-index: 100;
+		}
+
+		.modal-overlay.active {
+			display: flex;
+		}
+
+		.modal {
+			background: white;
+			border-radius: 8px;
+			padding: 1.5rem;
+			width: 100%;
+			max-width: 420px;
+			max-height: 90vh;
+			overflow-y: auto;
+		}
+
+		.modal h3 {
+			margin-bottom: 1rem;
+			color: #0a2e4b;
+		}
+
+		.modal label {
+			display: block;
+			font-size: 0.85rem;
+			margin: 0.7rem 0 0.2rem;
+			color: #4a5a6a;
+		}
+
+		.modal input,
+		.modal textarea {
+			width: 100%;
+			padding: 0.55rem 0.7rem;
+			border: 1px solid #c8d2dc;
+			border-radius: 5px;
+			font-family: inherit;
+			font-size: 0.95rem;
+		}
+
+		.modal input[readonly] {
+			background: #f0f4f8;
+			color: #5a6a7a;
+		}
+
+		.modal textarea {
+			resize: vertical;
+			min-height: 70px;
+		}
+
+		.modal-actions {
+			display: flex;
+			gap: 0.7rem;
+			margin-top: 1.3rem;
+		}
+
+		.modal-actions button {
+			flex: 1;
+			padding: 0.7rem;
+			border: none;
+			border-radius: 5px;
+			font-size: 0.95rem;
+			font-weight: 600;
+			cursor: pointer;
+		}
+
+		.btn-submit {
+			background: #1e3b5c;
+			color: white;
+		}
+
+		.btn-submit:hover {
+			background: #0f2a40;
+		}
+
+		.btn-cancel {
+			background: #e6edf6;
+			color: #1e3b5c;
+		}
+
+		.btn-cancel:hover {
+			background: #d5e0ec;
+		}
+
+		footer {
+			margin-top: 3rem;
+			padding-top: 1.5rem;
+			border-top: 1px solid #ccc;
+			text-align: center;
+			color: #5a6a7a;
+			font-size: 0.9rem;
+		}
+
+		@media (max-width: 500px) {
+			header {
+				flex-direction: column;
+				align-items: start;
+			}
+		}
+	</style>
 </head>
 
 <body>
-	<header class="site-header">
-		<div class="container header-content">
-			<a class="logo" href="index.html">Simple Store</a>
-			<nav aria-label="Main navigation">
-				<a href="index.html">Home</a>
-				<a class="active" href="products.html">Products</a>
-			</nav>
+	<header>
+		<div class="store-name">SIMPLE-STORE</div>
+		<div class="nav-links">
+			<a href="/index.html">Home</a>
+			<a href="/products.html">Products</a>
 		</div>
 	</header>
 
 	<main>
-		<section class="page-heading">
-			<div class="container">
-				<p class="eyebrow">Collection</p>
-				<h1>All products</h1>
-				<p>Choose a product to open the order form.</p>
-			</div>
-		</section>
+		<h2>Our products</h2>
+		<div class="product-grid" id="productGrid">
 
-		<section class="container section">
-			<div class="product-grid" data-product-list="all"></div>
-		</section>
-
-		<section class="container order-section" id="order-form-section" hidden>
-			<div class="order-panel">
-				<div class="section-heading">
-					<div>
-						<p class="eyebrow">Order request</p>
-						<h2>Send your details</h2>
-					</div>
-					<button class="text-button" type="button" data-close-form>Close</button>
-				</div>
-				<p class="form-note">Your request will be sent to the store for processing.</p>
-				<form id="order-form">
-					<div class="form-grid">
-						<label>
-							Product ID
-							<input id="product-id" name="source_id" type="text" readonly required>
-						</label>
-						<label>
-							Product title
-							<input id="product-title" name="product_title" type="text" readonly required>
-						</label>
-					</div>
-					<label>
-						Your address
-						<textarea name="address" rows="3" required></textarea>
-					</label>
-					<div class="form-grid">
-						<label>
-							Your name
-							<input name="customer_name" type="text" autocomplete="name" required>
-						</label>
-						<label>
-							Phone / WhatsApp
-							<input name="phone" type="tel" autocomplete="tel" required>
-						</label>
-					</div>
-					<button class="button" type="submit">Submit order</button>
-					<p class="form-status" role="status" aria-live="polite"></p>
-				</form>
+			<!-- Product 1 -->
+			<div class="product-card" data-id="100001" data-title="Classic Cotton T-Shirt"
+				data-desc="Soft breathable cotton tee perfect for everyday casual wear." data-price="19.99">
+				<div class="product-id">ID: 100001</div>
+				<div class="product-title">Classic Cotton T-Shirt</div>
+				<div class="product-desc">Soft breathable cotton tee perfect for everyday casual wear.</div>
+				<div class="product-price">$19.99</div>
 			</div>
-		</section>
+
+			<!-- Product 2 -->
+			<div class="product-card" data-id="100002" data-title="Ceramic Coffee Mug"
+				data-desc="Sturdy 350ml ceramic mug with a comfortable easy-grip handle." data-price="12.50">
+				<div class="product-id">ID: 100002</div>
+				<div class="product-title">Ceramic Coffee Mug</div>
+				<div class="product-desc">Sturdy 350ml ceramic mug with a comfortable easy-grip handle.</div>
+				<div class="product-price">$12.50</div>
+			</div>
+
+			<!-- Product 3 -->
+			<div class="product-card" data-id="100003" data-title="Notebook A5 Ruled"
+				data-desc="Compact A5 notebook with 120 ruled pages and durable cover." data-price="7.25">
+				<div class="product-id">ID: 100003</div>
+				<div class="product-title">Notebook A5 Ruled</div>
+				<div class="product-desc">Compact A5 notebook with 120 ruled pages and durable cover.</div>
+				<div class="product-price">$7.25</div>
+			</div>
+
+			<!-- Product 4 -->
+			<div class="product-card" data-id="100004" data-title="Stainless Water Bottle"
+				data-desc="Insulated 500ml bottle keeps drinks cold or hot for hours." data-price="24.00">
+				<div class="product-id">ID: 100004</div>
+				<div class="product-title">Stainless Water Bottle</div>
+				<div class="product-desc">Insulated 500ml bottle keeps drinks cold or hot for hours.</div>
+				<div class="product-price">$24.00</div>
+			</div>
+
+		</div>
 	</main>
 
-	<footer class="site-footer">
-		<div class="container">
-			<p>Simple Store &middot; A test storefront</p>
+	<!-- Order modal -->
+	<div class="modal-overlay" id="orderModal">
+		<div class="modal">
+			<h3>Place your order</h3>
+			<form id="orderForm">
+				<label for="productId">Product ID</label>
+				<input type="text" id="productId" name="product_id" readonly>
+
+				<label for="productTitle">Product title</label>
+				<input type="text" id="productTitle" name="product_title" readonly>
+
+				<label for="userName">Your name</label>
+				<input type="text" id="userName" name="user_name" required>
+
+				<label for="userPhone">Phone</label>
+				<input type="tel" id="userPhone" name="user_phone" required>
+
+				<label for="userAddress">Address</label>
+				<textarea id="userAddress" name="user_address" required></textarea>
+
+				<div class="modal-actions">
+					<button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+					<button type="submit" class="btn-submit">Place order</button>
+				</div>
+			</form>
 		</div>
+	</div>
+
+	<footer>
+		&copy; 2025 SIMPLE-STORE — no frills, just goods.
 	</footer>
+
+	<script src="script.js"></script>
 </body>
 
 </html>

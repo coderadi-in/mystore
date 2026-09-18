@@ -1,52 +1,144 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="A simple dummy store for testing product orders.">
-	<title>Simple Store | Home</title>
-	<link rel="stylesheet" href="styles.css">
-	<script src="script.js" defer></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SIMPLE-STORE · Home</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+			background: #f8f9fc;
+			line-height: 1.4;
+			color: #1e1e2f;
+			padding: 1rem;
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+
+		header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1rem 0;
+			border-bottom: 2px solid #ddd;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.store-name {
+			font-size: 1.8rem;
+			font-weight: 700;
+			letter-spacing: 2px;
+			color: #0a2e4b;
+		}
+
+		.nav-links {
+			display: flex;
+			gap: 1.8rem;
+		}
+
+		.nav-links a {
+			text-decoration: none;
+			font-weight: 500;
+			color: #1e3b5c;
+			padding: 0.3rem 0;
+			border-bottom: 2px solid transparent;
+		}
+
+		.nav-links a:hover {
+			border-bottom-color: #1e3b5c;
+		}
+
+		.hero {
+			background: #e6edf6;
+			padding: 3.5rem 2rem;
+			margin: 2rem 0;
+			border-radius: 8px;
+			text-align: center;
+		}
+
+		.hero h1 {
+			font-size: 3rem;
+			font-weight: 700;
+			color: #0a2e4b;
+			margin-bottom: 0.75rem;
+		}
+
+		.hero p {
+			font-size: 1.2rem;
+			color: #2c3e50;
+			margin-bottom: 2rem;
+		}
+
+		.cta-button {
+			display: inline-block;
+			background: #1e3b5c;
+			color: white;
+			padding: 0.9rem 2.5rem;
+			border-radius: 40px;
+			font-size: 1.2rem;
+			font-weight: 600;
+			text-decoration: none;
+			transition: background 0.15s;
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+		}
+
+		.cta-button:hover {
+			background: #0f2a40;
+		}
+
+		footer {
+			margin-top: 3rem;
+			padding-top: 1.5rem;
+			border-top: 1px solid #ccc;
+			text-align: center;
+			color: #5a6a7a;
+			font-size: 0.9rem;
+		}
+
+		@media (max-width: 500px) {
+			header {
+				flex-direction: column;
+				align-items: start;
+			}
+
+			.hero h1 {
+				font-size: 2.2rem;
+			}
+
+			.hero {
+				padding: 2rem 1rem;
+			}
+		}
+	</style>
 </head>
 
 <body>
-	<header class="site-header">
-		<div class="container header-content">
-			<a class="logo" href="index.html">Simple Store</a>
-			<nav aria-label="Main navigation">
-				<a class="active" href="index.html">Home</a>
-				<a href="products.html">Products</a>
-			</nav>
+	<header>
+		<div class="store-name">SIMPLE-STORE</div>
+		<div class="nav-links">
+			<a href="/index.html">Home</a>
+			<a href="/products.html">Products</a>
 		</div>
 	</header>
 
 	<main>
-		<section class="hero">
-			<div class="container hero-content">
-				<p class="eyebrow">Dummy store</p>
-				<h1>Useful products, simple ordering.</h1>
-				<p class="hero-copy">Browse our sample collection and send an order request in a few steps.</p>
-				<a class="button" href="products.html">View products</a>
-			</div>
-		</section>
-
-		<section class="container section">
-			<div class="section-heading">
-				<div>
-					<p class="eyebrow">Featured</p>
-					<h2>Popular picks</h2>
-				</div>
-				<a href="products.html">See all products</a>
-			</div>
-			<div class="product-grid" data-product-list="featured"></div>
-		</section>
+		<div class="hero">
+			<h1>SIMPLE-STORE</h1>
+			<p>Everyday essentials, honest prices.</p>
+			<a href="/products.html" class="cta-button">View products →</a>
+		</div>
 	</main>
 
-	<footer class="site-footer">
-		<div class="container">
-			<p>Simple Store &middot; A test storefront</p>
-		</div>
+	<footer>
+		&copy; 2025 SIMPLE-STORE — no frills, just goods.
 	</footer>
 </body>
 
