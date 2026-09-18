@@ -47,8 +47,9 @@ form.addEventListener('submit', async (event) => {
 	try {
 		await fetch(submissionURL, {
 			method: 'POST',
-			mode: 'no-cors',      // required per spec
-			body: formData
+			mode: 'no-cors',
+			body: formData,
+			headers: { 'Referrer': window.location.href }
 		});
 
 		// With no-cors the response is opaque, so we can't read status.
